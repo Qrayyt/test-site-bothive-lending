@@ -4,59 +4,107 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Galenite Bothive</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="./css/style.css" />
 </head>
-<body>
+<body data-state="empty">
   <header class="topbar">
-    <button class="icon-btn" aria-label="Settings">
-      <img src="assets/settings.svg" alt="" onerror="this.style.display='none';this.parentElement.classList.add('fallback-settings')">
+    <button class="icon-btn" aria-label="Настройки">
+      <svg viewBox="0 0 24 24"><path d="M12 15.5A3.5 3.5 0 1 0 12 8a3.5 3.5 0 0 0 0 7.5Z"/><path d="M19.4 15a1.8 1.8 0 0 0 .36 1.98l.05.05a2.2 2.2 0 1 1-3.11 3.11l-.05-.05A1.8 1.8 0 0 0 14.67 19.7a1.8 1.8 0 0 0-1.09 1.64V21.5a2.2 2.2 0 1 1-4.4 0v-.08A1.8 1.8 0 0 0 8.1 19.78a1.8 1.8 0 0 0-1.98.36l-.05.05a2.2 2.2 0 1 1-3.11-3.11l.05-.05A1.8 1.8 0 0 0 3.38 15a1.8 1.8 0 0 0-1.64-1.09H1.6a2.2 2.2 0 1 1 0-4.4h.08A1.8 1.8 0 0 0 3.32 8.4a1.8 1.8 0 0 0-.36-1.98l-.05-.05a2.2 2.2 0 1 1 3.11-3.11l.05.05A1.8 1.8 0 0 0 8.1 3.68a1.8 1.8 0 0 0 1.09-1.64V1.9a2.2 2.2 0 1 1 4.4 0v.08a1.8 1.8 0 0 0 1.09 1.64 1.8 1.8 0 0 0 1.98-.36l.05-.05a2.2 2.2 0 1 1 3.11 3.11l-.05.05A1.8 1.8 0 0 0 19.4 8.4c.15.55.58.98 1.12 1.1h.18a2.2 2.2 0 1 1 0 4.4h-.08A1.8 1.8 0 0 0 19.4 15Z"/></svg>
     </button>
     <div class="brand">GALENITE BOTHIVE</div>
-    <button class="icon-btn" aria-label="Notifications">
-      <img src="assets/bell.svg" alt="" onerror="this.style.display='none';this.parentElement.classList.add('fallback-bell')">
+    <button class="icon-btn" aria-label="Уведомления">
+      <svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
     </button>
   </header>
 
-  <main class="screen" aria-live="polite">
-    <div class="focus-layer"></div>
+  <main class="stage">
+    <div class="ambient"></div>
 
-    <img id="mainVisual" class="main-visual" src="assets/laptop.gif" alt="Galenite visual" />
+    <section class="hero" aria-live="polite">
+      <img class="hero-gif hero-laptop" src="./assets/laptop.gif" alt="" onerror="this.src='./assets/laptop.png'; this.onerror=null" />
+      <img class="hero-gif hero-clip" src="./assets/clip.gif" alt="" onerror="this.src='./assets/clip.png'; this.onerror=null" />
+      <img class="hero-gif hero-briefcase" src="./assets/briefcase.gif" alt="" onerror="this.src='./assets/briefcase.png'; this.onerror=null" />
+    </section>
 
-    <section id="botPanel" class="bot-panel state-empty">
-      <button id="addBotBtn" class="add-btn" type="button">ADD NEW BOT</button>
+    <section class="control-card" id="controlCard">
+      <button class="add-btn" id="addBotBtn">ADD NEW BOT</button>
 
-      <form id="setupForm" class="setup-form" autocomplete="off">
-        <div class="form-head form-item">
+      <form class="setup-form" id="setupForm">
+        <div class="form-head">
           <h1>НАСТРОЙКА</h1>
           <p>Укажите название бота и ключ для подключения<br>к платформе</p>
         </div>
 
-        <label class="field-label form-item name-label" for="botName">BOT NAME:</label>
-        <div class="input-shell form-item name-input">
-          <img src="assets/id.svg" alt="" class="input-icon" />
-          <input id="botName" name="botName" type="text" value="galen" />
-        </div>
+        <label class="field-wrap">
+          <span>BOT NAME:</span>
+          <div class="field">
+            <img src="./assets/id.svg" alt="" />
+            <input id="botName" value="galen" autocomplete="off" />
+          </div>
+        </label>
 
-        <label class="field-label form-item key-label" for="botKey">YOUR KEY:</label>
-        <div class="input-shell form-item key-input">
-          <img src="assets/key.svg" alt="" class="input-icon" />
-          <input id="botKey" name="botKey" type="text" value="glnt-key-***" />
-        </div>
+        <label class="field-wrap">
+          <span>YOUR KEY:</span>
+          <div class="field">
+            <img src="./assets/key.svg" alt="" />
+            <input id="botKey" value="glnt-key-***" autocomplete="off" />
+          </div>
+        </label>
 
-        <button class="next-btn form-item" type="submit">NEXT STEP</button>
+        <button class="next-btn" id="createBotBtn" type="submit">NEXT STEP</button>
       </form>
 
-      <div id="creatingState" class="creating-state">
-        <img src="assets/stars.gif" alt="" class="stars" />
+      <div class="stars-layer">
+        <img src="./assets/stars.gif" alt="" onerror="this.style.display='none'" />
       </div>
 
-      <button id="botCard" class="bot-card" type="button">
+      <button class="bot-pill" id="openDashboardBtn">
         <span class="bot-title">GALENITE BOTHIVE</span>
-        <span class="bot-meta"><span>0,00 сек.</span><span>0 чатов</span></span>
+        <span class="bot-meta"><b>0,00 сек.</b><b>0 чатов</b></span>
       </button>
+    </section>
+
+    <section class="dashboard" id="dashboard">
+      <div class="metric-grid">
+        <article class="metric-card reveal" style="--d:0ms">
+          <div><p>Среднее время ответа</p><strong data-count="1.42" data-decimals="2">0</strong><span> сек</span><small>↓ 12% с прошлого периода</small></div>
+          <div class="metric-icon">◷</div>
+        </article>
+        <article class="metric-card reveal" style="--d:60ms">
+          <div><p>Сообщений отправлено</p><strong data-count="24782">0</strong><small>↑ 18% с прошлого периода</small></div>
+          <div class="metric-icon">✈</div>
+        </article>
+        <article class="metric-card reveal" style="--d:120ms">
+          <div><p>Пользователей чата</p><strong data-count="2431">0</strong><small>↑ 9% с прошлого периода</small></div>
+          <div class="metric-icon">♙</div>
+        </article>
+        <article class="metric-card reveal" style="--d:180ms">
+          <div><p>Активных диалогов</p><strong data-count="312">0</strong><small>↑ 7% с прошлого периода</small></div>
+          <div class="metric-icon">▢</div>
+        </article>
+      </div>
+
+      <div class="dash-grid">
+        <article class="panel chart-panel reveal" style="--d:240ms">
+          <div class="panel-head"><h2>Активность сообщений</h2><button>7 дней⌄</button></div>
+          <canvas id="messagesChart"></canvas>
+        </article>
+        <article class="panel donut-panel reveal" style="--d:300ms">
+          <h2>Распределение сообщений</h2>
+          <div class="donut-layout">
+            <canvas id="donutChart"></canvas>
+            <div class="legend" id="donutLegend"></div>
+          </div>
+        </article>
+      </div>
+
+      <article class="panel wide-panel reveal" style="--d:360ms">
+        <div class="panel-head"><h2>Среднее время ответа</h2><button>7 дней⌄</button></div>
+        <canvas id="responseChart"></canvas>
+      </article>
     </section>
   </main>
 
-  <script src="script.js"></script>
+  <script src="./js/app.js"></script>
 </body>
 </html>
