@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Galenite Bothive</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <button class="icon-btn" aria-label="Settings">
+      <img src="assets/settings.svg" alt="" onerror="this.style.display='none';this.parentElement.classList.add('fallback-settings')">
+    </button>
+    <div class="brand">GALENITE BOTHIVE</div>
+    <button class="icon-btn" aria-label="Notifications">
+      <img src="assets/bell.svg" alt="" onerror="this.style.display='none';this.parentElement.classList.add('fallback-bell')">
+    </button>
+  </header>
+
+  <main class="screen" aria-live="polite">
+    <div class="focus-layer"></div>
+
+    <img id="mainVisual" class="main-visual" src="assets/laptop.gif" alt="Galenite visual" />
+
+    <section id="botPanel" class="bot-panel state-empty">
+      <button id="addBotBtn" class="add-btn" type="button">ADD NEW BOT</button>
+
+      <form id="setupForm" class="setup-form" autocomplete="off">
+        <div class="form-head form-item">
+          <h1>НАСТРОЙКА</h1>
+          <p>Укажите название бота и ключ для подключения<br>к платформе</p>
+        </div>
+
+        <label class="field-label form-item name-label" for="botName">BOT NAME:</label>
+        <div class="input-shell form-item name-input">
+          <img src="assets/id.svg" alt="" class="input-icon" />
+          <input id="botName" name="botName" type="text" value="galen" />
+        </div>
+
+        <label class="field-label form-item key-label" for="botKey">YOUR KEY:</label>
+        <div class="input-shell form-item key-input">
+          <img src="assets/key.svg" alt="" class="input-icon" />
+          <input id="botKey" name="botKey" type="text" value="glnt-key-***" />
+        </div>
+
+        <button class="next-btn form-item" type="submit">NEXT STEP</button>
+      </form>
+
+      <div id="creatingState" class="creating-state">
+        <img src="assets/stars.gif" alt="" class="stars" />
+      </div>
+
+      <button id="botCard" class="bot-card" type="button">
+        <span class="bot-title">GALENITE BOTHIVE</span>
+        <span class="bot-meta"><span>0,00 сек.</span><span>0 чатов</span></span>
+      </button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
